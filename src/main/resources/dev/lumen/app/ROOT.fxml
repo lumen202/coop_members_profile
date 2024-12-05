@@ -219,6 +219,7 @@
                         <Region prefHeight="36.0" prefWidth="196.0" />
                         <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#handleCancel" prefHeight="36.0" prefWidth="124.0" text="Cancel" />
                         <Button mnemonicParsing="false" onAction="#handleUpdate" prefHeight="36.0" prefWidth="138.0" text="OK" />
+                        <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="157.0" text="OK" />
                      </children>
                   </HBox>
                </children>

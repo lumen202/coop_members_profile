@@ -71,6 +71,8 @@ public class RootController extends FXController {
     TextField genderField;
     @FXML
     Button cancelButton;
+    
+    
     @FXML
     private TableView<Member> memberTable;
 
@@ -87,11 +89,10 @@ public class RootController extends FXController {
     private ObservableList<String> status;
     private ObservableList<Member> memberMasterList;
     Scene scene;
-    private Boolean event;
+    private int event = 0;
 
     @FXML
     void handleOK() {
-        handleAdd();
 
     }
 
@@ -117,6 +118,7 @@ public class RootController extends FXController {
             alert.show();
             return;
         }
+        
         memberMasterList.remove(selectedMember);
         MemberDAO.delete(selectedMember);
 
@@ -124,7 +126,6 @@ public class RootController extends FXController {
 
     @FXML
     void handleAdd() {
-        event = false;
         int officeID = officeField.getSelectionModel().getSelectedIndex() + 1;
         int status = statusfield.getSelectionModel().getSelectedIndex() + 1;
 
@@ -178,7 +179,6 @@ public class RootController extends FXController {
 
     @FXML
     public void handleUpdate() {
-        event = true;
         Member selectedMember = memberTable.getSelectionModel().getSelectedItem();
         if (selectedMember == null) {
             Alert alert = new Alert(AlertType.ERROR);
@@ -262,7 +262,6 @@ public class RootController extends FXController {
                 firstNameField.setText(nv.getFirstName());
                 middleNameField.setText(nv.getMiddleName());
                 lastNameField.setText(nv.getLastName());
-                // birthDateField.setText(nv.getDateOfBirth());
                 placeOfBirthFIeld.setText(nv.getPlaceOfBirth());
                 currentAddressField.setText(nv.getCurrentAddress());
                 occupationField.setText(nv.getOccupation());
@@ -317,13 +316,17 @@ public class RootController extends FXController {
 
         MenuItem editMenu = new MenuItem("Edit Member");
         editMenu.setOnAction(e -> {
+            event = 1;
             handleEdit();
+            ;
         });
 
         MenuItem addMenu = new MenuItem("Add Member");
         addMenu.setOnAction(e -> {
+            event = 2;
             memberTable.getSelectionModel().select(null);
             addMember();
+
             // loadForm();
         });
 
@@ -350,12 +353,12 @@ public class RootController extends FXController {
     @Override
     protected void load_listeners() {
         cancelButton.setVisible(false);
-
     }
 
     private void addMember() {
 
         setEditable(true);
+        cancelButton.setVisible(true);
         int id = memberMasterList.size() + 1;
         idField.setText(String.valueOf(id));
         firstNameField.clear();
