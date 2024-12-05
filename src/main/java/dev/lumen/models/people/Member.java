@@ -1,4 +1,6 @@
-package dev.lumen.models;
+package dev.lumen.models.people;
+
+import java.util.UUID;
 
 import dev.sol.core.application.FXModel;
 import dev.sol.core.properties.beans.FXDoubleProperty;
@@ -26,6 +28,15 @@ public class Member extends FXModel {
     public FXDoubleProperty stockamount;
     public FXIntegerProperty stockpaid;
     public FXStringProperty income;
+    public FXStringProperty sex;
+
+    public Member() {
+        // this(UUID.randomUUID().toString(),
+        // "", "", "", "", getMiddleName(), getDateOfBirth(), getPlaceOfBirth(),
+        // getStatus(), getCurrentAddress(), getOccupation(), getOfficeID(),
+        // getSalary(), getIncome(), getRelative(), getDependent(), getStockshare(),
+        // getStockamount(), getStockpaid(), getSex())
+    }
 
     public Member(int memberID,
             String firstName,
@@ -44,7 +55,7 @@ public class Member extends FXModel {
             String relative,
             String dependent,
             int stockshare,
-            double stockamount, int stockpaid) {
+            double stockamount, int stockpaid, String sex) {
         this.memberID = new FXIntegerProperty(memberID);
         this.firstName = new FXStringProperty(firstName);
         this.lastName = new FXStringProperty(lastName);
@@ -64,7 +75,20 @@ public class Member extends FXModel {
         this.stockshare = new FXIntegerProperty(stockshare);
         this.stockpaid = new FXIntegerProperty(stockpaid);
         this.income = new FXStringProperty(income);
+        this.sex = new FXStringProperty(sex);
 
+    }
+
+    public FXStringProperty sexProperty() {
+        return this.sex;
+    }
+
+    public String getSex() {
+        return this.sexProperty().get();
+    }
+
+    public void setSex(String sex) {
+        sexProperty().set(sex);
     }
 
     public FXStringProperty incomeProperty() {
@@ -172,7 +196,7 @@ public class Member extends FXModel {
     }
 
     public void setOfficeID(int officeID) {
-        officeIDProperty().set(getMemberID());
+        officeIDProperty().set(officeID);
     }
 
     public FXStringProperty currentAddressProperty() {
@@ -315,7 +339,7 @@ public class Member extends FXModel {
                 getDependent(),
                 getStockshare(),
                 getStockamount(),
-                getStockpaid());
+                getStockpaid(), getSex());
         return members;
     }
 
@@ -341,6 +365,7 @@ public class Member extends FXModel {
         setStockshare(c.getStockshare());
         setStockamount(c.getStockamount());
         setStockpaid(c.getStockpaid());
+        setSex(c.getSex());
 
     }
 

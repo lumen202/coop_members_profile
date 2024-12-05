@@ -14,10 +14,12 @@ module lumen.coopmembersprofile {
     requires core.util;
     requires java.sql.rowset;
 
+    opens dev.lumen.app.memberform to java.fxml;
     opens dev.lumen to javafx.fxml;
     opens dev.lumen.app to javafx.fxml;
 
     exports dev.lumen;
     exports dev.lumen.app;
+    exports dev.lumen.app.memberform;
 
 }

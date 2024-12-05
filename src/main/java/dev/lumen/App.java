@@ -1,7 +1,7 @@
 package dev.lumen;
 
 import dev.lumen.app.RootLoader;
-import dev.lumen.data.MemberDAO;
+import dev.lumen.data.people.MemberDAO;
 import dev.sol.core.application.FXApplication;
 import dev.sol.core.application.loader.FXLoaderFactory;
 import dev.sol.core.registry.FXCollectionsRegister;
